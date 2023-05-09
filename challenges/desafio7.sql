@@ -6,6 +6,6 @@ FROM artista AS a
     INNER JOIN album AS alb
     ON a.id = alb.artist_id    
     INNER JOIN seguindo_artista AS s
-    ON alb.id = s.artista_id
+    ON a.id = s.artista_id
     GROUP BY a.nome, alb.nome
-    ORDER BY pessoas_seguidoras DESC;
+	ORDER BY pessoas_seguidoras DESC, a.nome ASC, alb.nome ASC;
