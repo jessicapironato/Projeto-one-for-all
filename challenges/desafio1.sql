@@ -1,5 +1,4 @@
 
-
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
 USE SpotifyClone;
@@ -59,7 +58,7 @@ ENGINE = InnoDB;
 CREATE TABLE `SpotifyClone`.`cancao` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
-  `duracao` SMALLINT NOT NULL,
+  `duracao` INT NOT NULL,
   `album_id` INT NOT NULL,
   
   FOREIGN KEY(`album_id`) REFERENCES album(`id`) 
@@ -82,13 +81,6 @@ CREATE TABLE `SpotifyClone`.`historico_reproducao` (
 ENGINE = InnoDB;
 
 
-
-
-
-
-
-
-
 -- -----------------------------------------------------
 -- Table `seguindo_artista`
 -- -----------------------------------------------------
@@ -103,61 +95,63 @@ CREATE TABLE `SpotifyClone`.`seguindo_artista` (
   )
 ENGINE = InnoDB;
 
-INSERT INTO SpotifyClone.plano (id, nome, valor)
+INSERT INTO SpotifyClone.plano (nome, valor)
 VALUES
-	(1, 'gratuito', 0.00),
-    (2, 'familiar', 7.99),
-    (3, 'universitário', 5.99),
-    (4, 'pessoal', 6.99);
+	  ('gratuito', 0.00),
+    ('familiar', 7.99),
+    ('universitário', 5.99),
+    ('pessoal', 6.99);
 
-INSERT INTO SpotifyClone.usuario(id, nome, sobrenome, idade, plano_id, data_assinatura)
+INSERT INTO SpotifyClone.usuario(nome, sobrenome, idade, plano_id, data_assinatura)
 VALUES
-	(1, 'Barbara', 'Liskov', 82, 1, '2019-10-20'),
-	(2, 'Robert ', 'Cecil Martin', 58, 1, '2017-01-06'),
-	(3, 'Ada ', 'Lovelace', 37, 2, '2017-12-30'),
-	(4, 'Martin ', 'Fowler', 46, 2, '2017-01-17'),
-	(5, 'Sandi ', 'Metz', 58, 2, '2018-04-29'),
-	(6, 'Paulo', 'Freire', 19, 3, '2018-02-14'),
-	(7, 'Bell ', 'Hooks', 26, 3, '2018-01-05'),
-	(8, 'Christopher ', 'Alexander', 85, 4, '2019-06-05'),
-	(9, 'Judith ', 'Butler', 45, 4, '2020-05-13'),
-	(10, 'Jorge ', 'Amado', 58, 4, '2017-02-17');
+	('Barbara', 'Liskov', 82, 1, '2019-10-20'),
+	('Robert', 'Cecil Martin', 58, 1, '2017-01-06'),
+	('Ada', 'Lovelace', 37, 2, '2017-12-30'),
+	('Martin', 'Fowler', 46, 2, '2017-01-17'),
+	('Sandi', 'Metz', 58, 2, '2018-04-29'),
+	('Paulo', 'Freire', 19, 3, '2018-02-14'),
+	('Bell', 'Hooks', 26, 3, '2018-01-05'),
+	('Christopher', 'Alexander', 85, 4, '2019-06-05'),
+	('Judith', 'Butler', 45, 4, '2020-05-13'),
+	('Jorge', 'Amado', 58, 4, '2017-02-17');
 
-  INSERT INTO SpotifyClone.artista (id, nome)
-VALUES
-
-	(1, 'Beyoncé'),
-	(2, 'Queen'),
-	(3, 'Elis Regina'),
-	(4, 'Baco Exu do Blues'),
-	(5, 'Blind Guardian'),
-	(6, 'Nina Simone');
-
-INSERT INTO SpotifyClone.album (id, nome, ano_lancamento, artist_id)
+INSERT INTO SpotifyClone.artista (nome)
 VALUES
 
-	(1, 'Renaissance', 2022, 1),
-	(2, 'Jazz', 1978, 2),
-	(3, 'Hot Space', 1982, 2),
-	(4, 'Falso Brilhante', 1998, 3),
-	(5, 'Vento de Maio', 2001, 3),
-	(6, 'QVVJFA?', 2003, 4),
-	(7, 'Somewhere Far Beyond', 2007, 5),
-	(8, 'I Put A Spell On You', 2012, 6);
+	('Beyoncé'),
+	('Queen'),
+	('Elis Regina'),
+	('Baco Exu do Blues'),
+	('Blind Guardian'),
+	('Nina Simone');
+
+INSERT INTO SpotifyClone.album (nome, ano_lancamento, artist_id)
+VALUES
+
+	('Renaissance', 2022, 1),
+	('Jazz', 1978, 2),
+	('Hot Space', 1982, 2),
+	('Falso Brilhante', 1998, 3),
+	('Vento de Maio', 2001, 3),
+	('QVVJFA?', 2003, 4),
+	('Somewhere Far Beyond', 2007, 5),
+	('I Put A Spell On You', 2012, 6);
 	
-INSERT INTO SpotifyClone.cancao (id, nome, duracao, album_id) 
+INSERT INTO SpotifyClone.cancao (nome, duracao, album_id) 
 VALUES
-
-	(1, 'Samba em Paris', 267, 6),
-	(2, 'VIRGO\'S GROOVE', 369, 1),
-	(3, 'Feeling Good', 100, 8),
-	(4, 'O Medo de Amar é o Medo de Ser Livre', 207, 5),
-	(5, 'Under Pressure', 152, 3),
-	(6, 'BREAK MY SOUL', 279, 1),
-	(7, 'Don\'t Stop Me Now', 203, 2),
-	(8, 'The Bard\'s Song', 244, 7),
-	(9, 'ALIEN SUPERSTAR', 116, 1),
-	(10, 'Como Nossos Pais', 105, 4);
+  ('BREAK MY SOUL', 279, 1),
+  ('VIRGO\'S GROOVE', 369, 1),
+  ('ALIEN SUPERSTAR', 116, 1),
+  ('Don\'t Stop Me Now', 203, 2),
+  ('Under Pressure', 152, 3),
+  ('Como Nossos Pais', 105, 4),
+  ('O Medo de Amar é o Medo de Ser Livre', 207, 5),
+	('Samba em Paris', 267, 6),
+  ('The Bard\'s Song', 244, 7),	
+	('Feeling Good', 100, 8);
+	
+	
+	
 
 INSERT INTO SpotifyClone.historico_reproducao (usuario_id, cancao_id, data_reproducao)
 VALUES
@@ -177,13 +171,6 @@ VALUES
 	(8, 4, '2012-03-17 14:56:41'),
 	(9, 9, '2022-02-24 21:14:22'),
 	(10, 3, '2015-12-13 08:30:22');
-
-
-
-
-
-
-
 
 
 INSERT INTO SpotifyClone.seguindo_artista (usuario_id, artista_id)
